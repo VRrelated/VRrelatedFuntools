@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Tools</title>
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #FAF7F0;
+            color: #4A4947;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #B17457;
+            margin-bottom: 20px;
+        }
+
+        .tool {
+            background-color: #D8D2C2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool input, .tool button, .tool select {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #4A4947;
+            width: 100%;
+        }
+
+        button {
+            background-color: #B17457;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #8B5A3C;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tool {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Fun Tools</h1>
+
+    <!-- Celebrity Look-Alike -->
+    <div class="tool" id="celebrity-lookalike">
+        <h2>Celebrity Look-Alike</h2>
+        <select id="face-shape">
+            <option value="">Select Face Shape</option>
+            <option value="round">Round</option>
+            <option value="oval">Oval</option>
+            <option value="square">Square</option>
+            <option value="heart">Heart</option>
+        </select>
+        <select id="zodiac-sign">
+            <option value="">Select Zodiac Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <select id="height">
+            <option value="">Select Height</option>
+            <option value="short">Short</option>
+            <option value="average">Average</option>
+            <option value="tall">Tall</option>
+        </select>
+        <select id="weight">
+            <option value="">Select Weight</option>
+            <option value="light">Light</option>
+            <option value="average">Average</option>
+            <option value="heavy">Heavy</option>
+        </select>
+        <select id="hair-type">
+            <option value="">Select Hair Type</option>
+            <option value="short">Short</option>
+            <option value="long">Long</option>
+            <option value="silky">Silky</option>
+            <option value="wavy">Wavy</option>
+            <option value="curly">Curly</option>
+            <option value="braids">Braids</option>
+        </select>
+        <button onclick="generateCelebrityLookAlike()">Find Look-Alike</button>
+        <div id="celebrity-result"></div>
+    </div>
+
+    <!-- Life Path Number Calculator -->
+    <div class="tool" id="life-path">
+        <h2>Life Path Number Calculator</h2>
+        <input type="date" id="birthdate" placeholder="Enter Your Birthdate">
+        <button onclick="calculateLifePath()">Calculate Life Path</button>
+        <div id="life-path-result"></div>
+    </div>
+
+    <!-- Random Compliment Generator -->
+    <div class="tool" id="compliment-generator">
+        <h2>Random Compliment Generator</h2>
+        <button onclick="generateCompliment()">Get a Compliment</button>
+        <div id="compliment-result"></div>
+    </div>
+
+    <!-- Luck-o-Meter -->
+    <div class="tool" id="luck-o-meter">
+        <h2>Luck-o-Meter</h2>
+        <button onclick="checkLuck()">Check Your Luck</button>
+        <div id="luck-result"></div>
+    </div>
+
+    <!-- Pet Personality Match -->
+    <div class="tool" id="pet-personality">
+        <h2>Pet Personality Match</h2>
+        <select id="pet-face-shape">
+            <option value="">Select Face Shape</option>
+            <option value="round">Round</option>
+            <option value="oval">Oval</option>
+            <option value="square">Square</option>
+            <option value="heart">Heart</option>
+        </select>
+        <select id="pet-zodiac-sign">
+            <option value="">Select Zodiac Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <select id="pet-hair-type">
+            <option value="">Select Hair Type</option>
+            <option value="short">Short</option>
+            <option value="long">Long</option>
+            <option value="silky">Silky</option>
+            <option value="wavy">Wavy</option>
+            <option value="curly">Curly</option>
+            <option value="braids">Braids</option>
+        </select>
+        <button onclick="generatePetPersonality()">Find Pet Match</button>
+        <div id="pet-result"></div>
+    </div>
+
+    <!-- Daily Adventure Suggestion with Loved Ones -->
+    <div class="tool" id="daily-adventure">
+        <h2>Daily Adventure Suggestion with Loved Ones</h2>
+        <select id="relationship">
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="sister">Sister</option>
+            <option value="brother">Brother</option>
+            <option value="grandparent">Grandparent</option>
+            <option value="cousin">Cousin</option>
+        </select>
+        <button onclick="suggestAdventure()">Suggest Adventure</button>
+        <div id="adventure-result"></div>
+    </div>
+
+    <script>
+        // Celebrity Look-Alike
+        function generateCelebrityLookAlike() {
+            const zodiacSign = document.getElementById("zodiac-sign").value;
+            const celebrities = {
+                Aries: "Emma Watson",
+                Taurus: "George Clooney",
+                Gemini: "Angelina Jolie",
+                Cancer: "Selena Gomez",
+                Leo: "Jennifer Lopez",
+                Virgo: "Beyoncé",
+                Libra: "Will Smith",
+                Scorpio: "Leonardo DiCaprio",
+                Sagittarius: "Taylor Swift",
+                Capricorn: "Denzel Washington",
+                Aquarius: "Oprah Winfrey",
+                Pisces: "Rihanna"
+            };
+            document.getElementById("celebrity-result").innerText = zodiacSign
+                ? `Your celebrity look-alike is ${celebrities[zodiacSign]}.`
+                : "Please select a zodiac sign.";
+        }
+
+        // Life Path Number Calculator
+        function calculateLifePath() {
+            const birthdate = document.getElementById("birthdate").value;
+            const digits = birthdate.replace(/-/g, '').split('').map(Number);
+            const lifePath = digits.reduce((a, b) => a + b, 0) % 9 || 9;
+            document.getElementById("life-path-result").innerText = `Your Life Path Number is ${lifePath}`;
+        }
+
+        // Random Compliment Generator
+        function generateCompliment() {
+            const compliments = ["You have an amazing smile!", "You're a wonderful friend!", "Your creativity is inspiring!"];
+            document.getElementById("compliment-result").innerText = compliments[Math.floor(Math.random() * compliments.length)];
+        }
+
+        // Luck-o-Meter
+        function checkLuck() {
+            const luck = ["Very lucky!", "Average luck", "Today may be challenging."];
+            document.getElementById("luck-result").innerText = luck[Math.floor(Math.random() * luck.length)];
+        }
+
+        // Pet Personality Match
+        function generatePetPersonality() {
+            const petZodiac = document.getElementById("pet-zodiac-sign").value;
+            const petPersonalities = {
+                Aries: "Energetic and playful",
+                Taurus: "Loyal and grounded",
+                Gemini: "Curious and social",
+                Cancer: "Affectionate and protective",
+                Leo: "Bold and proud",
+                Virgo: "Clean and organized",
+                Libra: "Friendly and fair",
+                Scorpio: "Loyal and intense",
+                Sagittarius: "Adventurous and curious",
+                Capricorn: "Independent and wise",
+                Aquarius: "Quirky and intelligent",
+                Pisces: "Gentle and caring"
+            };
+            document.getElementById("pet-result").innerText = petZodiac
+                ? `Your pet's personality match is: ${petPersonalities[petZodiac]}`
+                : "Please select a zodiac sign.";
+        }
+
+        // Daily Adventure Suggestion
+        function suggestAdventure() {
+            const relationship = document.getElementById("relationship").value;
+            const adventures = {
+                father: "Go fishing together!",
+                mother: "Cook a new recipe!",
+                sister: "Have a spa day at home!",
+                brother: "Play video games together!",
+                grandparent: "Bake cookies together!",
+                cousin: "Watch a movie marathon!"
+            };
+            document.getElementById("adventure-result").innerText = adventures[relationship];
+        }
+    </script>
+</body>
+</html>
